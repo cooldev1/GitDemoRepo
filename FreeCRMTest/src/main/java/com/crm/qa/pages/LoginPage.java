@@ -10,20 +10,20 @@ import com.crm.qa.base.TestBase;
 public class LoginPage extends TestBase{
 	
 	//Page Factory - OR:
-	@FindBy(name="username")
+	@FindBy(xpath="//input[@formcontrolname='name']")
 	WebElement username;
 	
-	@FindBy(name="password")
+	@FindBy(xpath="//input[@formcontrolname='password']")
 	WebElement password;
 	
-	@FindBy(xpath="//input[@type='submit']")
+	@FindBy(xpath="//button[@type='submit']")
 	WebElement loginBtn;
 	
-	@FindBy(xpath="//button[contains(text(),'Sign Up')]")
-	WebElement signUpBtn;
+	@FindBy(xpath="//div[@class='forget_pass']")
+	WebElement forgetBtn;
 	
-	@FindBy(xpath="//img[contains(@class,'img-responsive')]")
-	WebElement crmLogo;
+	@FindBy(xpath="//h1[@class='text-center']")
+	WebElement kargo360Logo;
 	
 	//Initializing the Page Objects:
 	public LoginPage(){
@@ -36,7 +36,7 @@ public class LoginPage extends TestBase{
 	}
 	
 	public boolean validateCRMImage(){
-		return crmLogo.isDisplayed();
+		return kargo360Logo.isDisplayed();
 	}
 	
 	public HomePage login(String un, String pwd){
