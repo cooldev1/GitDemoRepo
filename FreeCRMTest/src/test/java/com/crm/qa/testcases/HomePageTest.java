@@ -6,7 +6,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import com.crm.qa.base.TestBase;
-import com.crm.qa.pages.ContactsPage;
+import com.crm.qa.pages.CartPage;
 import com.crm.qa.pages.HomePage;
 import com.crm.qa.pages.LoginPage;
 import com.crm.qa.util.TestUtil;
@@ -15,7 +15,7 @@ public class HomePageTest extends TestBase {
 	LoginPage loginPage;
 	HomePage homePage;
 	TestUtil testUtil;
-	ContactsPage contactsPage;
+	CartPage cartpage;
 
 	public HomePageTest() {
 		super();
@@ -30,7 +30,7 @@ public class HomePageTest extends TestBase {
 	public void setUp() {
 		initialization();
 		testUtil = new TestUtil();
-		contactsPage = new ContactsPage();
+		cartpage = new CartPage();
 		loginPage = new LoginPage();
 		homePage = loginPage.login(prop.getProperty("username"), prop.getProperty("password"));
 	}
@@ -39,19 +39,19 @@ public class HomePageTest extends TestBase {
 	@Test(priority=1)
 	public void verifyHomePageTitleTest(){
 		String homePageTitle = homePage.verifyHomePageTitle();
-		Assert.assertEquals(homePageTitle, "CRMPRO","Home page title not matched");
+		Assert.assertEquals(homePageTitle, "Kargo360","Home page title not matched");
 	}
 	
 	@Test(priority=2)
 	public void verifyUserNameTest(){
-		testUtil.switchToFrame();
+	//	testUtil.switchToFrame();
 		Assert.assertTrue(homePage.verifyCorrectUserName());
 	}
 	
 	@Test(priority=3)
-	public void verifyContactsLinkTest(){
-		testUtil.switchToFrame();
-		contactsPage = homePage.clickOnContactsLink();
+	public void verifyCartLinkTest() throws InterruptedException{
+	//	testUtil.switchToFrame();
+		cartpage = homePage.clickOncartLink();
 	}
 	
 	

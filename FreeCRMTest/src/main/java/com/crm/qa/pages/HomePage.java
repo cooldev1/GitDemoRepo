@@ -1,5 +1,6 @@
 package com.crm.qa.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.CacheLookup;
@@ -10,22 +11,27 @@ import com.crm.qa.base.TestBase;
 
 public class HomePage extends TestBase {
 
-	@FindBy(xpath = "//td[contains(text(),'User: Naveen K')]")
+	@FindBy(xpath = "//*[@class='dropdown dropdown-user welcome-admin']//child::h4")
 	@CacheLookup
 	WebElement userNameLabel;
 
-	@FindBy(xpath = "//a[contains(text(),'Contacts')]")
-	WebElement contactsLink;
+	@FindBy(xpath = "//div[@class='middel-section hidden-xs']//child::span")
+	WebElement homepagename;
 	
-	@FindBy(xpath = "//a[contains(text(),'New Contact')]")
-	WebElement newContactLink;
+	@FindBy(xpath = "//span[contains(text(),'Organize')]")
+	WebElement  OrganizeLink;
 	
 
-	@FindBy(xpath = "//a[contains(text(),'Deals')]")
-	WebElement dealsLink;
+	@FindBy(xpath = "//body/app-root[1]/app-top-navigation[1]/nav[1]/div[2]/ul[7]/li[1]/ul[1]/li[1]/a[1]")
+	WebElement MasterLink;
 
-	@FindBy(xpath = "//a[contains(text(),'Tasks')]")
-	WebElement tasksLink;
+	@FindBy(xpath = "//body/app-root[1]/app-top-navigation[1]/nav[1]/div[2]/ul[7]/li[1]/ul[1]/li[1]/ul[1]/li[1]/a[1]")
+	WebElement financeLink;
+
+	@FindBy(xpath = "//a[contains(text(),'Cart')]")
+	WebElement CartLink;
+	
+	
 
 	// Initializing the Page Objects:
 	public HomePage() {
@@ -41,33 +47,28 @@ public class HomePage extends TestBase {
 		return userNameLabel.isDisplayed();
 	}
 	
-	public ContactsPage clickOnContactsLink(){
-		contactsLink.click();
-		return new ContactsPage();
-	}
 	
-	public DealsPage clickOnDealsLink(){
-		dealsLink.click();
-		return new DealsPage();
-	}
-	
-	public TasksPage clickOnTasksLink(){
-		tasksLink.click();
-		return new TasksPage();
-	}
-	
-	public void clickOnNewContactLink(){
+	public CartPage clickOncartLink() throws InterruptedException{
 		Actions action = new Actions(driver);
-		action.moveToElement(contactsLink).build().perform();
-		newContactLink.click();
-		
+		action.moveToElement(OrganizeLink).build().perform();
+		Thread.sleep(1000);
+		action.moveToElement(MasterLink).build().perform();
+		Thread.sleep(1000);
+		action.moveToElement(financeLink).build().perform();
+		Thread.sleep(1000);
+		CartLink.click();
+		driver.findElement(By.xpath("//*[@class='slider round']")).click();
+	
+	
+	
+	return new CartPage();
+	
+	
 	}
-	
-	
-	
-	
-	
-	
-	
 
+	public CartPage clickOnContactsLink() {
+		// TODO Auto-generated method stub
+		
+		return null;
+	}
 }
